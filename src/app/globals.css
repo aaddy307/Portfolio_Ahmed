@@ -783,6 +783,31 @@ body.menu-open {
   box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
 }
 
+/* New Systematic Filter Buttons */
+.filter-btn-main {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-btn-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.filter-btn-category {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.filter-btn-category:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 /* Line clamping utilities */
 .line-clamp-2 {
   display: -webkit-box;

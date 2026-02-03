@@ -169,18 +169,66 @@ export default function Projects() {
             </p>
           </div>
 
-          {/* Filter Buttons - Horizontal Layout */}
-          <div className="flex justify-center gap-2 sm:gap-3 lg:gap-4 mb-10 sm:mb-12 overflow-x-auto">
-            <div className="flex gap-2 sm:gap-3 lg:gap-4 min-w-max px-4 sm:px-0">
-              {filters.map((filterItem) => (
+          {/* Filter Buttons - Systematic Layout */}
+          <div className="mb-10 sm:mb-12">
+            {/* Filter Container */}
+            <div className="flex flex-col items-center gap-4 sm:gap-6">
+              {/* Main Filter Button */}
+              <div className="relative">
                 <button
-                  key={filterItem.id}
-                  className={`filter-btn text-sm sm:text-base whitespace-nowrap ${filter === filterItem.id ? "active" : ""}`}
-                  onClick={() => setFilter(filterItem.id)}
+                  className={`filter-btn-main text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 ${
+                    filter === "all" 
+                      ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white shadow-lg shadow-orange-500/30" 
+                      : "bg-white/10 text-text-secondary hover:bg-white/20 border border-white/20"
+                  }`}
+                  onClick={() => setFilter("all")}
                 >
-                  {filterItem.label}
+                  <i className="fas fa-th-large mr-2"></i>
+                  All Projects
                 </button>
-              ))}
+              </div>
+
+              {/* Category Filters */}
+              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                <button
+                  className={`filter-btn-category text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all duration-300 min-w-[140px] sm:min-w-[160px] ${
+                    filter === "web"
+                      ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/30"
+                      : "bg-white/5 text-text-secondary hover:bg-white/10 border border-white/10 hover:border-blue-500/30"
+                  }`}
+                  onClick={() => setFilter("web")}
+                >
+                  <i className="fas fa-code mr-2"></i>
+                  Web Development
+                </button>
+                
+                <div className="hidden sm:block w-px h-8 bg-white/20"></div>
+                
+                <button
+                  className={`filter-btn-category text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all duration-300 min-w-[140px] sm:min-w-[160px] ${
+                    filter === "design"
+                      ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30"
+                      : "bg-white/5 text-text-secondary hover:bg-white/10 border border-white/10 hover:border-purple-500/30"
+                  }`}
+                  onClick={() => setFilter("design")}
+                >
+                  <i className="fas fa-palette mr-2"></i>
+                  UI/UX Design
+                </button>
+              </div>
+
+              {/* Active Filter Indicator */}
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-text-secondary">
+                <i className="fas fa-filter"></i>
+                <span>
+                  Showing {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'}
+                  {filter !== "all" && (
+                    <span className="ml-1 text-accent-primary font-semibold">
+                      in {filters.find(f => f.id === filter)?.label}
+                    </span>
+                  )}
+                </span>
+              </div>
             </div>
           </div>
 

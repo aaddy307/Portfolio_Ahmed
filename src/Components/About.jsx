@@ -289,49 +289,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* Journey Timeline - Full width */}
-        <div className="mb-6 sm:mb-8">
-          <div className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover-lift">
-            <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
-              <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center shadow-lg shadow-green-500/50 shrink-0">
-                <i className="fas fa-route text-white text-xs sm:text-sm lg:text-base"></i>
-              </div>
-              <h3 className="text-base sm:text-lg lg:text-xl font-display font-bold">
-                My Journey
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-              {journey.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 lg:p-4 rounded-lg bg-white/5 border border-white/10 hover:border-accent-primary/50 transition-all group"
-                >
-                  <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-br from-${item.color}-500 to-${item.color}-600 flex items-center justify-center shadow-lg shadow-${item.color}-500/50 group-hover:scale-110 transition-transform shrink-0`}>
-                    <i className={`fas ${item.icon} text-white text-xs sm:text-sm lg:text-base`}></i>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-semibold text-[10px] sm:text-xs lg:text-sm mb-0.5 truncate">
-                      {item.title}
-                    </h4>
-                    <p className="text-[9px] sm:text-[10px] lg:text-xs text-text-secondary mb-0.5 truncate">
-                      {item.subtitle}
-                    </p>
-                    {item.period && (
-                      <p className="text-[8px] sm:text-[9px] lg:text-[10px] text-text-secondary/70 flex items-center gap-1">
-                        <i className="far fa-calendar-alt text-[7px] sm:text-[8px]"></i>
-                        {item.period}
-                      </p>
-                    )}
-                  </div>
-                  <span className={`px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 rounded-full text-[8px] sm:text-[9px] lg:text-xs font-semibold bg-${item.color}-500/20 text-${item.color}-500 border border-${item.color}-500/30 shrink-0`}>
-                    {item.status}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Expertise Section - Full width */}
         <div className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover-lift">
           <div className="flex items-center gap-2 sm:gap-3 mb-5 sm:mb-6">
