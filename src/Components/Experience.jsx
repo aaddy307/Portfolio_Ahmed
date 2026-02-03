@@ -1,6 +1,6 @@
 export default function Experience() {
   return (
-    <section id="experience" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-transparent to-bg-secondary/30 reveal">
+    <section id="experience" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-transparent to-bg-secondary/30 reveal">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12 sm:mb-14 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4 gradient-text">

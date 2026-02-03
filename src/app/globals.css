@@ -1232,8 +1232,8 @@ img {
 /* Improve section spacing on mobile */
 @media (max-width: 640px) {
   section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }
 
@@ -1281,8 +1281,8 @@ img {
 /* Landscape mode optimizations for mobile */
 @media (max-width: 896px) and (orientation: landscape) {
   section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
   
   .hero-section {

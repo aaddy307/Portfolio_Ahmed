@@ -152,7 +152,7 @@ export default function About() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Profile Card - Full width on mobile, 1 column on desktop */}
           <div className="lg:col-span-1 order-1">
             <div className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover-lift h-full flex flex-col items-center justify-center">
@@ -206,9 +206,10 @@ export default function About() {
             </div>
           </div>
 
-          {/* Bio Section - Full width on mobile, 2 columns on desktop */}
-          <div className="lg:col-span-2 order-2">
-            <div className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover-lift h-full">
+          {/* Right Column - Who I Am + My Journey */}
+          <div className="lg:col-span-2 order-2 space-y-6 sm:space-y-8">
+            {/* Bio Section - Who I Am */}
+            <div className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover-lift">
               <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center shadow-lg shadow-orange-500/50 shrink-0">
                   <i className="fas fa-user text-white text-xs sm:text-sm lg:text-base"></i>
@@ -217,7 +218,7 @@ export default function About() {
                   Who I Am
                 </h3>
               </div>
-              <ul className="space-y-2 sm:space-y-2.5">
+              <ul className="space-y-1.5 sm:space-y-2">
                 <li className="flex items-start gap-2 text-[10px] sm:text-xs lg:text-sm text-text-secondary leading-relaxed">
                   <i className="fas fa-check-circle text-accent-primary mt-0.5 shrink-0 text-[10px] sm:text-xs"></i>
                   <span>
@@ -244,11 +245,52 @@ export default function About() {
                 </li>
               </ul>
             </div>
+
+            {/* Journey Timeline */}
+            <div className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover-lift">
+              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center shadow-lg shadow-green-500/50 shrink-0">
+                  <i className="fas fa-route text-white text-xs sm:text-sm lg:text-base"></i>
+                </div>
+                <h3 className="text-base sm:text-lg lg:text-xl font-display font-bold">
+                  My Journey
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                {journey.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 lg:p-4 rounded-lg bg-white/5 border border-white/10 hover:border-accent-primary/50 transition-all group"
+                  >
+                    <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-br from-${item.color}-500 to-${item.color}-600 flex items-center justify-center shadow-lg shadow-${item.color}-500/50 group-hover:scale-110 transition-transform shrink-0`}>
+                      <i className={`fas ${item.icon} text-white text-xs sm:text-sm lg:text-base`}></i>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-[10px] sm:text-xs lg:text-sm mb-0.5 truncate">
+                        {item.title}
+                      </h4>
+                      <p className="text-[9px] sm:text-[10px] lg:text-xs text-text-secondary mb-0.5 truncate">
+                        {item.subtitle}
+                      </p>
+                      {item.period && (
+                        <p className="text-[8px] sm:text-[9px] lg:text-[10px] text-text-secondary/70 flex items-center gap-1">
+                          <i className="far fa-calendar-alt text-[7px] sm:text-[8px]"></i>
+                          {item.period}
+                        </p>
+                      )}
+                    </div>
+                    <span className={`px-1.5 sm:px-2 lg:px-3 py-0.5 sm:py-1 rounded-full text-[8px] sm:text-[9px] lg:text-xs font-semibold bg-${item.color}-500/20 text-${item.color}-500 border border-${item.color}-500/30 shrink-0`}>
+                      {item.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Journey Timeline - Full width */}
-        <div className="mb-8 sm:mb-10">
+        <div className="mb-6 sm:mb-8">
           <div className="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover-lift">
             <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
               <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center shadow-lg shadow-green-500/50 shrink-0">
@@ -343,7 +385,7 @@ export default function About() {
                       {/* Progress Bar */}
                       <div className="h-1.5 sm:h-2 bg-white/10 rounded-full overflow-hidden group-hover:h-2 sm:group-hover:h-3 transition-all duration-300">
                         <div
-                          className={`h-full bg-gradient-to-r ${skill.gradient} rounded-full transition-all duration-1000 ease-out group-hover:shadow-lg group-hover:shadow-accent-primary/50`}
+                          className={`h-full bg-gradient-to-r ${skill.gradient} rounded-full transition-all duration-500 ease-out group-hover:shadow-lg`}
                           style={{ width: `${skill.percentage}%` }}
                         ></div>
                       </div>

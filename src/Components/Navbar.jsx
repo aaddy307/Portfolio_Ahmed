@@ -134,43 +134,50 @@ export default function Navbar() {
       <div className={`fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-bg-secondary/95 backdrop-blur-xl z-50 lg:hidden shadow-2xl border-l border-white/10 transition-transform duration-500 ${
         mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        <div className="flex flex-col h-full p-6">
-          {/* Close button */}
-          <button
-            className="self-end w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-300 mb-8"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            <i className="fas fa-times text-lg"></i>
-          </button>
-
-          {/* Mobile nav links */}
-          <div className="flex flex-col gap-2">
-            {navLinks.map((link, index) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                style={{ animationDelay: `${index * 50}ms` }}
-                className={`flex items-center gap-4 px-5 py-4 rounded-xl transition-all duration-300 animate-slideIn ${
-                  activeSection === link.href.substring(1)
-                    ? 'bg-gradient-to-r from-orange-500 to-purple-500 text-white shadow-lg shadow-orange-500/30'
-                    : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-white border border-white/10 hover:border-orange-500/50'
-                }`}
-              >
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                  activeSection === link.href.substring(1)
-                    ? 'bg-white/20'
-                    : 'bg-white/5'
-                }`}>
-                  <i className={`fas ${link.icon}`}></i>
-                </div>
-                <span className="font-medium">{link.label}</span>
-              </a>
-            ))}
+        <div className="flex flex-col h-full">
+          {/* Header with close button - Fixed */}
+          <div className="flex-shrink-0 p-4 sm:p-6 border-b border-white/10">
+            <button
+              className="ml-auto w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:border-red-500/50 hover:bg-red-500/10 transition-all duration-300"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <i className="fas fa-times text-lg"></i>
+            </button>
           </div>
 
-          {/* Mobile CTA */}
-          <div className="mt-auto">
+          {/* Scrollable content area */}
+          <div className="flex-1 overflow-y-auto overflow-x-hidden px-4 sm:px-6">
+            <div className="py-4">
+              {/* Mobile nav links */}
+              <div className="flex flex-col gap-2 mb-6">
+                {navLinks.map((link, index) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    style={{ animationDelay: `${index * 50}ms` }}
+                    className={`flex items-center gap-4 px-5 py-4 rounded-xl transition-all duration-300 animate-slideIn ${
+                      activeSection === link.href.substring(1)
+                        ? 'bg-gradient-to-r from-orange-500 to-purple-500 text-white shadow-lg shadow-orange-500/30'
+                        : 'bg-white/5 text-text-secondary hover:bg-white/10 hover:text-white border border-white/10 hover:border-orange-500/50'
+                    }`}
+                  >
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                      activeSection === link.href.substring(1)
+                        ? 'bg-white/20'
+                        : 'bg-white/5'
+                    }`}>
+                      <i className={`fas ${link.icon}`}></i>
+                    </div>
+                    <span className="font-medium">{link.label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Footer with CTA - Fixed */}
+          <div className="flex-shrink-0 p-4 sm:p-6 border-t border-white/10">
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}

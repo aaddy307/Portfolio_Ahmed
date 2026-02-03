@@ -157,7 +157,7 @@ export default function Projects() {
 
   return (
     <>
-      <section id="projects" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 reveal">
+      <section id="projects" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 reveal">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-14 lg:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4 gradient-text">
@@ -169,17 +169,19 @@ export default function Projects() {
             </p>
           </div>
 
-          {/* Filter Buttons - Responsive */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 mb-10 sm:mb-12">
-            {filters.map((filterItem) => (
-              <button
-                key={filterItem.id}
-                className={`filter-btn text-sm sm:text-base ${filter === filterItem.id ? "active" : ""}`}
-                onClick={() => setFilter(filterItem.id)}
-              >
-                {filterItem.label}
-              </button>
-            ))}
+          {/* Filter Buttons - Horizontal Layout */}
+          <div className="flex justify-center gap-2 sm:gap-3 lg:gap-4 mb-10 sm:mb-12 overflow-x-auto">
+            <div className="flex gap-2 sm:gap-3 lg:gap-4 min-w-max px-4 sm:px-0">
+              {filters.map((filterItem) => (
+                <button
+                  key={filterItem.id}
+                  className={`filter-btn text-sm sm:text-base whitespace-nowrap ${filter === filterItem.id ? "active" : ""}`}
+                  onClick={() => setFilter(filterItem.id)}
+                >
+                  {filterItem.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Projects Grid - Responsive columns */}

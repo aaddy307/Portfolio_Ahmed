@@ -24,7 +24,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 reveal">
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 reveal">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12 sm:mb-14 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4 gradient-text">

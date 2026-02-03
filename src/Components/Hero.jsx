@@ -21,7 +21,7 @@ export default function Hero() {
   return (
     <section
   id="home"
-  className="flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-[5em] md:pt-20 pb-32 sm:pb-24 md:pb-8 relative overflow-hidden"
+  className="flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-[5em] md:pt-20 pb-20 sm:pb-16 md:pb-8 relative overflow-hidden"
 >
       {/* Animated Background Grid */}
       <div className="absolute inset-0 opacity-20">
@@ -78,7 +78,7 @@ export default function Hero() {
               {roles.map((role, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-3 sm:gap-4 icon-bounce group"
+                  className="flex items-center gap-2 sm:gap-3 lg:gap-2 icon-bounce group"
                 >
                   <div
                     className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-${role.color}-500/10 flex items-center justify-center shrink-0 border border-${role.color}-500/20 group-hover:bg-${role.color}-500/20 group-hover:scale-110 transition-all duration-300`}
@@ -88,7 +88,7 @@ export default function Hero() {
                     ></i>
                   </div>
                   <div
-                    className={`hidden sm:block w-12 sm:w-16 h-0.5 bg-linear-to-r from-${role.color}-500 to-transparent`}
+                    className={`hidden sm:block lg:hidden w-12 sm:w-16 h-0.5 bg-linear-to-r from-${role.color}-500 to-transparent`}
                   ></div>
                   <p className="text-sm sm:text-lg md:text-xl text-text-primary font-medium">
                     {role.label}
