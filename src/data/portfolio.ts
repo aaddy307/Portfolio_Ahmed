@@ -89,7 +89,7 @@ export const projects: Project[] = [
     logline: 'A co-founded healthcare platform with four role-based panels: User, Doctor, Admin and Super Admin.',
     stack: ['React', 'Node.js', 'Socket.io', 'WebRTC', 'Groq AI'],
     build: [
-      'Co-founded and built a healthcare platform with four role-based panels (User, Doctor, Admin, Super Admin), deployed live on Vercel.',
+      'Co-founded and built a healthcare platform with four role-based panels (User, Doctor, Admin, Super Admin), deployed live at mediaiofficial.in.',
       'Designed the architecture around real-time communication (Socket.io / WebRTC) with AI-assisted features powered by Groq, plus OCR and facial recognition.',
     ],
     features: [
@@ -100,9 +100,9 @@ export const projects: Project[] = [
     ],
     metrics: [
       { value: '4', label: 'role-based panels' },
-      { value: 'Live', label: 'deployed on Vercel' },
+      { value: 'Live', label: 'mediaiofficial.in' },
     ],
-    live: 'https://medi-ai-frontend.vercel.app',
+    live: 'https://mediaiofficial.in/',
     palette: { from: '#2a0610', via: '#7a0f24', to: '#0b0710', accent: '#ff3d5a' },
     motif: 'shield',
   },
@@ -185,7 +185,7 @@ export const achievements: Achievement[] = [
     org: 'MediAI',
     detail: 'Co-founded a healthcare platform with four role-based panels, live on the web.',
     laurel: 'Co-Founder',
-    link: 'https://medi-ai-frontend.vercel.app',
+    link: 'https://mediaiofficial.in/',
   },
   {
     id: 'ai-ds',

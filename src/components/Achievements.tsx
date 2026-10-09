@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { achievements, certifications, type Certification } from '../data/portfolio';
 import { EASE, SectionHeading, Tilt } from './fx';
 import { RailButtons } from './Rail';
+import CertificateModal from './CertificateModal';
 
 function Laurel({ side }: { side: 'l' | 'r' }) {
   return (
@@ -19,22 +20,6 @@ export default function Achievements() {
   const rail = useRef<HTMLDivElement>(null);
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
   const issuers = Array.from(new Set(certifications.map((c) => c.issuer.split(' · ')[0])));
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSelectedCert(null);
-    };
-    if (selectedCert) {
-      window.addEventListener('keydown', onKey);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      window.removeEventListener('keydown', onKey);
-      document.body.style.overflow = '';
-    };
-  }, [selectedCert]);
 
   return (
     <>
@@ -71,7 +56,7 @@ export default function Achievements() {
                     data-cursor="link"
                     className="relative mt-auto inline-flex min-h-10 items-center gap-1 pt-5 text-xs font-semibold tracking-wide text-bone underline decoration-[#d9b46a]/60 underline-offset-4 hover:decoration-[#d9b46a]"
                   >
-                    View document ↗
+                    {a.link.startsWith('http') ? 'Visit live site ↗' : 'View document ↗'}
                   </a>
                 )}
               </article>
@@ -138,72 +123,14 @@ export default function Achievements() {
         </div>
       </div>
 
-      {/* Lightbox / Modal for viewing certificate in high resolution */}
+      {/* Lightbox Modal via Portal to avoid CSS containing block */}
       <AnimatePresence>
         {selectedCert && (
-          <motion.div
-            className="fixed inset-0 z-[120] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedCert(null)}
-          >
-            <motion.div
-              className="relative flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-white/15 bg-ink-2 shadow-2xl"
-              initial={{ scale: 0.94, opacity: 0, y: 15 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.94, opacity: 0, y: 15 }}
-              transition={{ duration: 0.3, ease: EASE }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Modal header */}
-              <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-crimson-2">
-                    {selectedCert.issuer}
-                  </span>
-                  <h4 className="font-sans text-base font-semibold text-bone sm:text-lg">
-                    {selectedCert.name}
-                  </h4>
-                </div>
-                <div className="flex items-center gap-2">
-                  <a
-                    href={selectedCert.image}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex h-9 items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-3 text-xs font-semibold text-bone transition hover:bg-white/10"
-                  >
-                    Open Original ↗
-                  </a>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedCert(null)}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/15 text-lg text-mist transition hover:bg-white/10 hover:text-bone"
-                    aria-label="Close"
-                  >
-                    ✕
-                  </button>
-                </div>
-              </div>
-
-              {/* Modal certificate viewer */}
-              <div className="flex flex-1 items-center justify-center overflow-auto bg-black/60 p-4 sm:p-6">
-                <img
-                  src={selectedCert.image}
-                  alt={selectedCert.name}
-                  className="max-h-[72vh] w-auto max-w-full rounded-lg object-contain shadow-2xl ring-1 ring-white/10"
-                />
-              </div>
-
-              {/* Modal footer with metadata if available */}
-              {(selectedCert.credentialId || selectedCert.date) && (
-                <div className="flex flex-wrap items-center justify-between border-t border-white/10 px-5 py-2.5 text-xs text-mist">
-                  {selectedCert.credentialId && <span>Credential ID: {selectedCert.credentialId}</span>}
-                  {selectedCert.date && <span>Completed: {selectedCert.date}</span>}
-                </div>
-              )}
-            </motion.div>
-          </motion.div>
+          <CertificateModal
+            key="certificate-lightbox"
+            cert={selectedCert}
+            onClose={() => setSelectedCert(null)}
+          />
         )}
       </AnimatePresence>
     </>
