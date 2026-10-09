@@ -22,7 +22,6 @@ export const profile = {
   email: 'mohd.ahmedkhan2604@gmail.com',
   links: {
     linkedin: 'https://www.linkedin.com/in/ahmedkhan-222218338',
-    // TODO: replace with your real GitHub profile URL
     github: 'https://github.com/aaddy307',
   },
   /** Shown under the "More on GitHub" card. Keep in sync with links.github. */
