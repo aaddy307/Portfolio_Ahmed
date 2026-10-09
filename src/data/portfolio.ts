@@ -19,9 +19,9 @@ export const profile = {
   intro:
     'A first-year AI & Data Science student and full-stack developer who builds real products, not just projects. 10+ web and mobile applications delivered for e-commerce, real estate, finance and industrial businesses with the MERN stack.',
   location: 'Mumbai Metropolitan Region',
-  email: 'mohd.ahmedkhan2604@gmail.com',
+  email: 'aaddy.ly143@gmail.com',
   links: {
-    linkedin: 'https://www.linkedin.com/in/ahmedkhan-222218338',
+    linkedin: 'https://www.linkedin.com/in/ahmed-khan-222218338/',
     github: 'https://github.com/aaddy307',
   },
   /** Shown under the "More on GitHub" card. Keep in sync with links.github. */
