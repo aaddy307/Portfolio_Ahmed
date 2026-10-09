@@ -165,6 +165,14 @@ export type Achievement = {
 
 export const achievements: Achievement[] = [
   {
+    id: 'nexcore-appreciation',
+    title: 'Letter of Appreciation',
+    org: 'Nexcore Alliance LLP',
+    detail: 'Recognized by HR & Operations for detecting over 10 critical and minor bugs during User Panel & Admin Mobile testing.',
+    laurel: 'QA & Debugging',
+    link: '/slvd3kuggemzxbzexmyb.jpg',
+  },
+  {
     id: 'client-projects',
     title: '10+ Client Apps',
     org: 'Web & Mobile',
@@ -177,6 +185,7 @@ export const achievements: Achievement[] = [
     org: 'MediAI',
     detail: 'Co-founded a healthcare platform with four role-based panels, live on the web.',
     laurel: 'Co-Founder',
+    link: 'https://medi-ai-frontend.vercel.app',
   },
   {
     id: 'ai-ds',
@@ -187,13 +196,86 @@ export const achievements: Achievement[] = [
   },
 ];
 
-export type Certification = { issuer: string; name: string; link?: string };
+export type Certification = {
+  issuer: string;
+  name: string;
+  image: string;
+  link?: string;
+  date?: string;
+  credentialId?: string;
+};
 
 export const certifications: Certification[] = [
-  { issuer: 'Google', name: 'Google AI Essentials' },
-  { issuer: 'Google', name: 'Use AI Responsibly' },
-  { issuer: 'Anthropic', name: 'AI Fluency for Students' },
-  { issuer: 'Course', name: 'Introduction to AI' },
+  {
+    issuer: 'Anthropic',
+    name: 'Claude 101',
+    image: '/dxrq07jhvlsluhdqjxzl.png',
+  },
+  {
+    issuer: 'Anthropic',
+    name: 'AI Fluency for Students',
+    image: '/hthuprnpevyx9rusmfch.png',
+  },
+  {
+    issuer: 'Anthropic',
+    name: 'AI Fluency: Framework & Foundations',
+    image: '/rkdfta68ocmobrar7mxb.png',
+  },
+  {
+    issuer: 'Anthropic',
+    name: 'AI Fluency for Nonprofits',
+    image: '/tire2arpzcncyxwphvqb.png',
+  },
+  {
+    issuer: 'Anthropic',
+    name: 'AI Fluency for Educators',
+    image: '/tyofsorjwvxbetlbw6d4.png',
+  },
+  {
+    issuer: 'DataCamp',
+    name: 'Understanding Prompt Engineering',
+    image: '/kw4bbqr4cwmrow6d570w.jpg',
+    credentialId: '#37,129,057',
+    date: 'Nov 07, 2024',
+  },
+  {
+    issuer: 'Intel & Digital India',
+    name: 'AI For All — AI Aware Stage',
+    image: '/f8uwsmzgqw9rxxcvl1n4.jpg',
+    date: 'Jan 06, 2026',
+  },
+  {
+    issuer: 'Intel & Digital India',
+    name: 'AI For All — AI Appreciate Stage',
+    image: '/mcxt9u1wh10bcvce2ymr.jpg',
+    date: 'Jan 06, 2026',
+  },
+  {
+    issuer: 'AISECT & INDIAai',
+    name: 'Yuva AI For ALL',
+    image: '/nfujosbhotbfmdn8hoo8.jpg',
+    credentialId: 'm7vsby3Oj0',
+    date: 'Jan 21, 2026',
+  },
+  {
+    issuer: 'edX · Univ. of Edinburgh',
+    name: 'Climate Change: Carbon Capture & Storage',
+    image: '/of98eghs27zeiifo7kcn.jpg',
+    credentialId: 'bb15c2faeaa8490b9328897466b0ea07',
+    date: 'Feb 27, 2025',
+  },
+  {
+    issuer: 'HCLTech',
+    name: 'Career Shaper — Professional Ethics',
+    image: '/xg2uy7saonlneuqukxjt.jpg',
+    date: 'Sep–Nov 2024',
+  },
+  {
+    issuer: 'Nexcore Alliance',
+    name: 'Letter of Appreciation — Testing & Debugging',
+    image: '/slvd3kuggemzxbzexmyb.jpg',
+    date: 'Oct 05, 2025',
+  },
 ];
 
 export type Skill = { name: string; mono: string; note?: string };

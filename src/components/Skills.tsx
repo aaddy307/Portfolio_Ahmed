@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { skillCategories, skillEvidence, type Skill } from '../data/portfolio';
 import { EASE, SectionHeading } from './fx';
+import { TechLogo } from './TechLogos';
 
 const HUES = ['#ff3d5a', '#4cc9ff', '#46e3a8', '#ffb547', '#b98bff', '#ff8a5c', '#7ee0ff'];
 
@@ -81,13 +82,12 @@ function SkillCard({ skill, hue }: { skill: Skill; hue: string }) {
     >
       <div aria-hidden className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition duration-500 group-hover:opacity-60" style={{ background: hue }} />
       <motion.span
-        className="relative flex h-12 w-12 items-center justify-center rounded-lg font-display text-2xl tracking-wide"
-        style={{ background: `${hue}1f`, color: hue, boxShadow: `inset 0 0 0 1px ${hue}55` }}
-        animate={open ? { rotate: [0, -8, 8, 0], scale: 1.08 } : { rotate: 0, scale: 1 }}
-        transition={{ duration: 0.5 }}
+        className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-black/40 ring-1 ring-white/15 transition-transform"
+        animate={open ? { scale: 1.12 } : { scale: 1 }}
+        transition={{ duration: 0.35 }}
         aria-hidden
       >
-        {skill.mono}
+        <TechLogo name={skill.name} size={28} />
       </motion.span>
       <span className="relative mt-4 flex items-center gap-2 text-[15px] font-semibold text-bone">
         {skill.name}
