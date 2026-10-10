@@ -17,7 +17,7 @@ export const profile = {
   role: 'Full Stack MERN Developer',
   tagline: ['Full Stack MERN Developer', 'AI / DS', 'Web & Mobile'],
   intro:
-    'A first-year AI & Data Science student and full-stack developer who builds real products, not just projects. 10+ web and mobile applications delivered for e-commerce, real estate, finance and industrial businesses with the MERN stack.',
+    'A Second-year AI & Data Science student and full-stack developer who builds real products, not just projects. 10+ web and mobile applications delivered for e-commerce, real estate, finance and industrial businesses with the MERN stack.',
   location: 'Mumbai Metropolitan Region',
   email: 'aaddy.ly143@gmail.com',
   links: {
@@ -39,7 +39,7 @@ export const profile = {
 export const education = [
   {
     school: 'Nexcore Institute of Technology',
-    place: 'Kurla, Mumbai',
+    place: 'Mumbai',
     degree: "Bachelor's — Artificial Intelligence & Data Science",
     period: 'August 2025 – April 2028',
     score: 'Batch 2025–28',
@@ -48,9 +48,9 @@ export const education = [
 
 export const experience = [
   {
-    company: 'Nexcore Institute of Technology',
+    company: 'Nexcore Alliance',
     role: 'Intern',
-    place: 'Kurla, Mumbai',
+    place: 'Mumbai',
     period: 'August 2025 – Present',
     points: [
       'Delivering web and mobile applications with the MERN stack (React.js, Next.js, Node.js, Express.js, MongoDB).',
@@ -183,7 +183,7 @@ export const achievements: Achievement[] = [
     id: 'mediai-cofounder',
     title: 'Co-Founder',
     org: 'MediAI',
-    detail: 'Co-founded a healthcare platform with four role-based panels, live on the web.',
+    detail: 'Co-founded a healthcare platform with four role-based panels.',
     laurel: 'Co-Founder',
     link: 'https://mediaiofficial.in/',
   },
@@ -192,7 +192,7 @@ export const achievements: Achievement[] = [
     title: 'AI & DS Student',
     org: 'Nexcore Institute of Technology',
     detail: "Bachelor's in Artificial Intelligence & Data Science, August 2025 – April 2028.",
-    laurel: 'First Year',
+    laurel: 'Second Year',
   },
 ];
 
@@ -368,7 +368,7 @@ export const seasons: Season[] = [
     number: 1,
     title: 'Enter: AI & DS',
     period: '2025 – Present',
-    synopsis: "Bachelor's in Artificial Intelligence & Data Science at Nexcore Institute of Technology, Kurla.",
+    synopsis: "Bachelor's in Artificial Intelligence & Data Science at Nexcore Institute of Technology.",
     episodes: [
       {
         code: 'S01 E01',
@@ -405,7 +405,7 @@ export const seasons: Season[] = [
       {
         code: 'S02 E02',
         title: 'The Co-Founder',
-        description: 'Co-founded MediAI, a healthcare platform with four role-based panels, live on Vercel.',
+        description: 'Co-founded MediAI, a healthcare platform with four role-based panels.',
         tags: ['MediAI', 'Healthcare', 'AI'],
         runtime: '2026',
         palette: crimson,
@@ -460,8 +460,8 @@ export const introSlides: IntroSlide[] = [
   {
     kicker: 'Education',
     title: 'AI & Data Science',
-    lines: ['Nexcore Institute of Technology, Kurla', 'August 2025 – April 2028'],
-    chips: ['First year'],
+    lines: ['Nexcore Institute of Technology', 'August 2025 – April 2028'],
+    chips: ['Second year'],
   },
   {
     kicker: 'Skills',
@@ -472,7 +472,7 @@ export const introSlides: IntroSlide[] = [
   {
     kicker: 'Experience',
     title: 'The Intern Arc',
-    lines: ['Intern · Nexcore Institute of Technology', 'August 2025 – Present', 'Web · Mobile · Real clients'],
+    lines: ['Intern · Nexcore Alliance', 'August 2025 – Present', 'Web · Mobile · Real clients'],
   },
   {
     kicker: 'Projects',
