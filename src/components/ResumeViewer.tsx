@@ -8,7 +8,7 @@ export default function ResumeSection({ onView }: { onView: () => void }) {
   return (
     <>
       <SectionHeading kicker="The screenplay" title="The Full Story" />
-      <div className="gutter grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14">
+      <div className="gutter grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14 w-full max-w-full overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 60, rotateX: 10 }}
           whileInView={{ opacity: 1, y: 0, rotateX: 0 }}

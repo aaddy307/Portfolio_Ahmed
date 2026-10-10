@@ -1,22 +1,24 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { profile, topPicks } from '../data/portfolio';
+import { useFinePointer } from '../hooks/useMedia';
 import { EASE, SectionHeading } from './fx';
 import { PosterBackdrop } from './Poster';
 import { RailButtons } from './Rail';
 
 export default function TopPicks() {
   const rail = useRef<HTMLDivElement>(null);
+  const fine = useFinePointer();
   return (
     <>
       <SectionHeading kicker="Top 10 · from the resume" title={`${profile.firstName}'s Top Picks`} />
-      <div className="group/rail relative">
+      <div className="group/rail relative w-full max-w-full overflow-hidden">
         <div ref={rail} className="rail gutter flex snap-x snap-mandatory gap-2 overflow-x-auto py-6">
           {topPicks.map((pick, i) => (
             <motion.div
               key={pick.title}
               className="group relative flex h-[260px] shrink-0 snap-start items-end sm:h-[300px]"
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, ...(fine && { x: 50 }) }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '0px -5% 0px 0px' }}
               transition={{ duration: 0.7, delay: Math.min(i, 5) * 0.06, ease: EASE }}

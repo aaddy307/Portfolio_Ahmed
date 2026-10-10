@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 import { profile, projects, type Project } from '../data/portfolio';
-import { useDesktop, useReducedMotionPref } from '../hooks/useMedia';
+import { useDesktop, useFinePointer, useReducedMotionPref } from '../hooks/useMedia';
 import { EASE, RevealText } from './fx';
 import ProjectCard from './ProjectCard';
 
@@ -75,7 +75,7 @@ function PinnedOriginals({ onOpen }: { onOpen: (p: Project) => void }) {
   const bar = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={wrap} style={{ height: `calc(100vh + ${dist}px)` }} className="relative">
+    <div ref={wrap} style={{ height: `calc(100vh + ${dist}px)` }} className="relative w-full max-w-full overflow-hidden">
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(50%_60%_at_70%_50%,rgba(229,19,43,0.10),transparent_70%)]" />
         <motion.div ref={track} style={{ x }} className="gutter relative flex items-center gap-8 pr-[12vw]" data-cursor="drag">
@@ -97,14 +97,15 @@ function PinnedOriginals({ onOpen }: { onOpen: (p: Project) => void }) {
 }
 
 function RailOriginals({ onOpen }: { onOpen: (p: Project) => void }) {
+  const fine = useFinePointer();
   return (
-    <div className="py-6">
+    <div className="w-full max-w-full overflow-hidden py-6">
       <div className="gutter mb-6">
         <Intro />
       </div>
       <motion.div
         className="rail gutter flex snap-x snap-mandatory gap-4 overflow-x-auto pb-6"
-        initial={{ opacity: 0, x: 60 }}
+        initial={{ opacity: 0, ...(fine && { x: 60 }) }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.9, ease: EASE }}

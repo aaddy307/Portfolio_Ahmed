@@ -18,12 +18,12 @@ export default function ContinueWatching({ order }: { order: SectionId[] }) {
   const rail = useRef<HTMLDivElement>(null);
 
   return (
-    <section aria-labelledby="continue-title" className="relative z-10 -mt-10 pb-10 sm:-mt-16">
+    <section aria-labelledby="continue-title" className="relative z-10 -mt-10 pb-10 sm:-mt-16 w-full max-w-full overflow-hidden">
       <div className="gutter mb-4 flex items-end justify-between">
         <RevealText as="h2" text="Continue Exploring" className="font-sans text-lg font-semibold tracking-tight text-bone sm:text-2xl" />
         <span className="hidden text-xs text-smoke sm:block">Progress shows what you&apos;ve watched so far</span>
       </div>
-      <div className="group/rail relative">
+      <div className="group/rail relative w-full max-w-full overflow-hidden">
         <div ref={rail} className="rail gutter flex snap-x snap-mandatory gap-3 overflow-x-auto py-8 sm:gap-4" data-cursor={fine ? undefined : 'drag'}>
           {order.map((id, i) => {
             const meta = sectionMeta[id];

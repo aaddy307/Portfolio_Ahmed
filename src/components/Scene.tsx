@@ -14,7 +14,7 @@ export default function Scene({ id, children, className = '' }: { id: string; ch
   const scale = useTransform(scrollYProgress, [0, 1], [0.97, 1]);
 
   return (
-    <motion.section id={id} ref={ref} style={{ opacity, scale }} className={`relative scroll-mt-16 py-16 sm:py-24 ${className}`}>
+    <motion.section id={id} ref={ref} style={{ opacity, scale }} className={`relative scroll-mt-16 py-16 sm:py-24 w-full max-w-full overflow-x-clip ${className}`}>
       {children}
     </motion.section>
   );

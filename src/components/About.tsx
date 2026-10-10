@@ -16,7 +16,7 @@ export default function About() {
   return (
     <>
       <SectionHeading kicker="The Pilot" title="About Me" />
-      <div className="gutter grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
+      <div className="gutter grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16 w-full max-w-full overflow-hidden">
         <motion.div
           className="mx-auto w-full max-w-md lg:max-w-none"
           initial={{ opacity: 0, scale: 0.88, ...(fine && { filter: 'blur(12px)' }) }}
@@ -48,9 +48,9 @@ export default function About() {
         </Tilt>
         </motion.div>
 
-        <div>
+        <div className="w-full max-w-full overflow-hidden">
           <motion.p
-            className="font-serif text-[clamp(1.6rem,3.2vw,2.6rem)] italic leading-[1.15] text-bone"
+            className="font-serif text-[clamp(1.6rem,3.2vw,2.6rem)] italic leading-[1.15] text-bone break-words"
             initial={{ opacity: 0, y: 24, ...(fine && { filter: 'blur(8px)' }) }}
             whileInView={{ opacity: 1, y: 0, ...(fine && { filter: 'blur(0px)' }) }}
             viewport={{ once: true }}

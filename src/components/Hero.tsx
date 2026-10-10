@@ -53,7 +53,7 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
     <section
       id="top"
       ref={ref}
-      className="relative min-h-[100svh] overflow-hidden"
+      className="relative min-h-[100svh] w-full max-w-full overflow-hidden"
       onPointerMove={(e) => {
         if (!fine) return;
         mx.set((e.clientX / window.innerWidth) * 2 - 1);
@@ -61,7 +61,7 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
       }}
     >
       {/* atmosphere */}
-      <motion.div aria-hidden className="absolute inset-0" style={{ x: glowX }}>
+      <motion.div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ x: glowX }}>
         <div className="absolute right-[-10%] top-[-10%] h-[90vh] w-[80vw] rounded-full bg-[radial-gradient(closest-side,rgba(229,19,43,0.38),rgba(229,19,43,0.08)_55%,transparent)] blur-2xl lg:right-[-4%] lg:w-[60vw]" />
         <div className="absolute bottom-[-20%] left-[-10%] h-[70vh] w-[60vw] rounded-full bg-[radial-gradient(closest-side,rgba(90,20,120,0.25),transparent)] blur-2xl" />
       </motion.div>
@@ -74,7 +74,7 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
 
       {/* portrait */}
       <motion.div
-        className="absolute inset-x-0 top-12 z-[2] flex h-[64svh] items-end justify-center sm:h-[70svh] lg:bottom-0 lg:left-auto lg:right-[3vw] lg:top-20 lg:h-auto lg:w-[54vw] xl:right-[6vw] xl:w-[48vw]"
+        className="pointer-events-none absolute inset-x-0 top-12 z-[2] flex h-[64svh] items-end justify-center overflow-hidden sm:h-[70svh] lg:pointer-events-auto lg:bottom-0 lg:left-auto lg:right-[3vw] lg:top-20 lg:h-auto lg:w-[54vw] xl:right-[6vw] xl:w-[48vw]"
         style={{ y: imgY, scale: imgScale, opacity: fade }}
       >
         <motion.div

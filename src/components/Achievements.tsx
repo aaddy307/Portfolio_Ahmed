@@ -66,7 +66,7 @@ export default function Achievements() {
       </div>
 
       {/* certifications rail */}
-      <div className="mt-16">
+      <div className="mt-16 w-full max-w-full overflow-hidden">
         <div className="gutter mb-3 flex flex-wrap items-end justify-between gap-2">
           <div>
             <h3 className="font-sans text-lg font-semibold text-bone sm:text-2xl">
@@ -77,7 +77,7 @@ export default function Achievements() {
           <p className="text-xs text-smoke">{issuers.join(' · ')}</p>
         </div>
 
-        <div className="group/rail relative">
+        <div className="group/rail relative w-full max-w-full overflow-hidden">
           <div ref={rail} className="rail gutter flex snap-x gap-4 overflow-x-auto py-5">
             {certifications.map((c, i) => (
               <motion.button

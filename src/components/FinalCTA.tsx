@@ -23,7 +23,7 @@ export default function FinalCTA({ onReplay }: { onReplay: () => void }) {
   ];
 
   return (
-    <section id="contact" ref={ref} className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-4 py-24 text-center">
+    <section id="contact" ref={ref} className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-4 py-24 text-center w-full max-w-full">
       <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,rgba(229,19,43,0.18),transparent_70%)]" />
       <Particles count={36} />
 
