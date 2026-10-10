@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useRef, type ReactNode } from 'react';
 import Lenis from 'lenis';
-import { useReducedMotionPref } from './useMedia';
+import { useFinePointer, useReducedMotionPref } from './useMedia';
 
 type ScrollApi = {
   scrollTo: (target: string | HTMLElement | number, opts?: { offset?: number; immediate?: boolean }) => void;
@@ -12,11 +12,13 @@ const ScrollCtx = createContext<ScrollApi | null>(null);
 
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const reduced = useReducedMotionPref();
+  const fine = useFinePointer();
   const lenisRef = useRef<Lenis | null>(null);
   const locks = useRef(0);
 
+  // Lenis only on desktop — mobile browsers have native momentum scroll that's more efficient
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || !fine) return;
     const lenis = new Lenis({ duration: 1.15, smoothWheel: true, easing: (t) => 1 - Math.pow(1 - t, 4) });
     lenisRef.current = lenis;
     let raf = 0;
@@ -30,7 +32,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, [reduced]);
+  }, [reduced, fine]);
 
   const scrollTo = useCallback<ScrollApi['scrollTo']>((target, opts = {}) => {
     const offset = opts.offset ?? -72;

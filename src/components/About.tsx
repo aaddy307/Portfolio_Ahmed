@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { education, experience, profile } from '../data/portfolio';
+import { useFinePointer } from '../hooks/useMedia';
 import { EASE, SectionHeading, Tilt } from './fx';
 
 export default function About() {
@@ -10,14 +11,16 @@ export default function About() {
     { k: 'Based in', v: profile.location, s: 'India' },
   ];
 
+  const fine = useFinePointer();
+
   return (
     <>
       <SectionHeading kicker="The Pilot" title="About Me" />
       <div className="gutter grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
         <motion.div
           className="mx-auto w-full max-w-md lg:max-w-none"
-          initial={{ opacity: 0, scale: 0.88, filter: 'blur(12px)' }}
-          whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, scale: 0.88, ...(fine && { filter: 'blur(12px)' }) }}
+          whileInView={{ opacity: 1, scale: 1, ...(fine && { filter: 'blur(0px)' }) }}
           viewport={{ once: true, margin: '-10% 0px' }}
           transition={{ duration: 1.2, ease: EASE }}
         >
@@ -48,8 +51,8 @@ export default function About() {
         <div>
           <motion.p
             className="font-serif text-[clamp(1.6rem,3.2vw,2.6rem)] italic leading-[1.15] text-bone"
-            initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: 24, ...(fine && { filter: 'blur(8px)' }) }}
+            whileInView={{ opacity: 1, y: 0, ...(fine && { filter: 'blur(0px)' }) }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: EASE }}
           >

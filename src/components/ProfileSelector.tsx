@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { profile, viewerProfiles, type ProfileId } from '../data/portfolio';
+import { useFinePointer } from '../hooks/useMedia';
 import { EASE } from './fx';
 
 export function ProfileAvatar({ id, size = 'lg' }: { id: ProfileId; size?: 'sm' | 'lg' }) {
@@ -10,7 +11,7 @@ export function ProfileAvatar({ id, size = 'lg' }: { id: ProfileId; size?: 'sm' 
     return (
       <span className={`relative flex items-center justify-center overflow-hidden shadow-lg ${box}`} style={{ background: 'radial-gradient(circle at 50% 30%, #7a0f24, #1a0509)' }}>
         <img
-          src="/IMG_4674.JPG"
+          src="/assets/portrait-420.webp"
           alt="Ahmed Khan"
           className="h-full w-full object-cover object-[center_15%]"
         />
@@ -29,6 +30,7 @@ export function ProfileAvatar({ id, size = 'lg' }: { id: ProfileId; size?: 'sm' 
 }
 
 export default function ProfileSelector({ onPick }: { onPick: (id: ProfileId) => void }) {
+  const fine = useFinePointer();
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onPick('ahmed');
@@ -42,7 +44,7 @@ export default function ProfileSelector({ onPick }: { onPick: (id: ProfileId) =>
       className="fixed inset-0 z-[110] flex flex-col items-center justify-center overflow-y-auto bg-ink px-4 py-12 sm:py-16"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 1.08, filter: 'blur(10px)' }}
+      exit={{ opacity: 0, scale: 1.08, ...(fine && { filter: 'blur(10px)' }) }}
       transition={{ duration: 0.7, ease: EASE }}
       role="dialog"
       aria-label="Who's watching?"
@@ -52,8 +54,8 @@ export default function ProfileSelector({ onPick }: { onPick: (id: ProfileId) =>
       <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center justify-center">
         <motion.h2
           className="mb-8 sm:mb-12 text-center font-sans text-3xl font-medium tracking-tight text-bone sm:text-5xl md:text-6xl"
-          initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 20, ...(fine && { filter: 'blur(8px)' }) }}
+          animate={{ opacity: 1, y: 0, ...(fine && { filter: 'blur(0px)' }) }}
           transition={{ duration: 0.8, ease: EASE }}
         >
           Who&apos;s watching?

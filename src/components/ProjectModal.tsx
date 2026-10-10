@@ -2,16 +2,19 @@ import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { projects, type Project } from '../data/portfolio';
 import { useScrollLock } from '../hooks/smoothScroll';
+import { useFinePointer } from '../hooks/useMedia';
 import { EASE, Magnetic } from './fx';
 import { ProjectArt } from './Poster';
 
-const block = {
-  hidden: { opacity: 0, y: 24, filter: 'blur(8px)' },
-  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: EASE } },
-};
+const getBlock = (fine: boolean) => ({
+  hidden: { opacity: 0, y: 24, ...(fine && { filter: 'blur(8px)' }) },
+  show: { opacity: 1, y: 0, ...(fine && { filter: 'blur(0px)' }), transition: { duration: 0.7, ease: EASE } },
+});
 
 export default function ProjectModal({ project, onClose, onSwitch }: { project: Project; onClose: () => void; onSwitch: (p: Project) => void }) {
   useScrollLock(true);
+  const fine = useFinePointer();
+  const block = getBlock(fine);
   const scroller = useRef<HTMLDivElement>(null);
   const closeBtn = useRef<HTMLButtonElement>(null);
 
@@ -35,7 +38,7 @@ export default function ProjectModal({ project, onClose, onSwitch }: { project: 
   return (
     <motion.div className="fixed inset-0 z-[140]" role="dialog" aria-modal="true" aria-labelledby={`title-${project.id}-modal`}>
       <motion.div
-        className="absolute inset-0 bg-black/80 backdrop-blur-md"
+        className="absolute inset-0 bg-black/85 sm:bg-black/80 sm:backdrop-blur-md"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -91,19 +94,34 @@ export default function ProjectModal({ project, onClose, onSwitch }: { project: 
               {project.logline}
             </motion.p>
 
-            {project.github && (
+            {(project.liveUrl || project.live || project.github) && (
               <motion.div variants={block} className="mt-6 flex flex-wrap gap-3">
-                <Magnetic>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    data-cursor="link"
-                    className="flex min-h-12 items-center gap-2 rounded-md bg-bone px-6 text-[15px] font-bold text-ink transition hover:bg-white"
-                  >
-                    GitHub ↗
-                  </a>
-                </Magnetic>
+                {(project.liveUrl || project.live) && (
+                  <Magnetic>
+                    <a
+                      href={project.liveUrl || project.live}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-cursor="link"
+                      className="flex min-h-12 items-center gap-2 rounded-md bg-crimson px-6 text-[15px] font-bold text-white shadow-lg shadow-crimson/25 transition hover:bg-crimson-2"
+                    >
+                      ▶ Live Site ↗
+                    </a>
+                  </Magnetic>
+                )}
+                {project.github && (
+                  <Magnetic>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-cursor="link"
+                      className="flex min-h-12 items-center gap-2 rounded-md bg-bone px-6 text-[15px] font-bold text-ink transition hover:bg-white"
+                    >
+                      GitHub ↗
+                    </a>
+                  </Magnetic>
+                )}
               </motion.div>
             )}
 

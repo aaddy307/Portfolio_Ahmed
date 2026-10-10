@@ -107,6 +107,20 @@ body {
   -webkit-backdrop-filter: blur(14px) saturate(140%);
 }
 
+/* Lighter compositing on mobile — fewer GPU layers */
+@media (hover: none), (pointer: coarse) {
+  .glass {
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+  }
+  .grain {
+    animation: none;
+  }
+  .light-streak {
+    display: none;
+  }
+}
+
 .focus-ring:focus-visible,
 button:focus-visible,
 a:focus-visible {

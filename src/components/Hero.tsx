@@ -7,10 +7,10 @@ import { EASE, Magnetic, Particles } from './fx';
 import { SeriesMark } from './Poster';
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.25 } } };
-const item = {
-  hidden: { opacity: 0, y: 28, filter: 'blur(10px)' },
-  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.9, ease: EASE } },
-};
+const item = (fine: boolean) => ({
+  hidden: { opacity: 0, y: 28, ...(fine && { filter: 'blur(10px)' }) },
+  show: { opacity: 1, y: 0, ...(fine && { filter: 'blur(0px)' }), transition: { duration: 0.9, ease: EASE } },
+});
 
 export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => void; onResume: () => void; profileId: ProfileId }) {
   const ref = useRef<HTMLElement>(null);
@@ -37,7 +37,7 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
   const glowX = useTransform(px, [-1, 1], ['-6%', '6%']);
 
   const meta = [
-    education[0].period.split(' – ')[0].split(' ')[1] + ' – Present',
+    '2026 – Present',
     'B-VOC in AI & DS',
     `${projects.length} Originals`,
     `${certifications.length} Certifications`,
@@ -79,7 +79,7 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
       >
         <motion.div
           className="relative h-full w-full lg:h-[86vh]"
-          style={{ rotateY: imgRotY, rotateX: imgRotX, x: imgShiftX, transformPerspective: 1200 }}
+          style={fine ? { rotateY: imgRotY, rotateX: imgRotX, x: imgShiftX, transformPerspective: 1200 } : undefined}
           initial={{ clipPath: 'inset(100% -30% -10% -30%)', opacity: 0 }}
           animate={{ clipPath: 'inset(-30% -30% -10% -30%)', opacity: 1 }}
           transition={{ duration: 1.6, ease: EASE, delay: 0.1 }}
@@ -117,18 +117,18 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
         initial="hidden"
         animate="show"
       >
-        <motion.div variants={item} className="mb-3 text-lg">
+        <motion.div variants={item(fine)} className="mb-3 text-lg">
           <SeriesMark />
         </motion.div>
-        <motion.h1 variants={item} className="font-display leading-[0.82] tracking-[0.02em] text-bone" style={{ fontSize: 'clamp(4rem, 12vw, 11rem)' }}>
+        <motion.h1 variants={item(fine)} className="font-display leading-[0.82] tracking-[0.02em] text-bone" style={{ fontSize: 'clamp(4rem, 12vw, 11rem)' }}>
           <span className="shimmer-text">{profile.firstName}</span>
         </motion.h1>
-        <motion.p variants={item} className="mt-1 font-sans text-sm font-bold tracking-[0.62em] text-crimson-2 sm:text-base">
+        <motion.p variants={item(fine)} className="mt-1 font-sans text-sm font-bold tracking-[0.62em] text-crimson-2 sm:text-base">
           {profile.seriesTag}
         </motion.p>
 
-        <motion.div variants={item} className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px] font-medium text-mist">
-          <span className="rounded border border-white/25 px-1.5 py-px text-[10px] font-bold tracking-wider text-bone">AI·ML</span>
+        <motion.div variants={item(fine)} className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px] font-medium text-mist">
+          <span className="rounded border border-white/25 px-1.5 py-px text-[10px] font-bold tracking-wider text-bone">AI-DS</span>
           {meta.map((m, i) => (
             <span key={m} className="flex items-center gap-3">
               {i > 0 && <span className="h-1 w-1 rounded-full bg-smoke" />}
@@ -137,15 +137,15 @@ export default function Hero({ onPlay, onResume, profileId }: { onPlay: () => vo
           ))}
         </motion.div>
 
-        <motion.p variants={item} className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-bone/90 sm:text-xs sm:tracking-[0.34em]">
+        <motion.p variants={item(fine)} className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-bone/90 sm:text-xs sm:tracking-[0.34em]">
           {profile.tagline.join(' • ')}
         </motion.p>
 
-        <motion.p variants={item} className="mt-4 max-w-xl text-[15px] leading-relaxed text-bone/80 sm:text-base">
+        <motion.p variants={item(fine)} className="mt-4 max-w-xl text-[15px] leading-relaxed text-bone/80 sm:text-base">
           {profile.intro}
         </motion.p>
 
-        <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
+        <motion.div variants={item(fine)} className="mt-8 flex flex-wrap items-center gap-3">
           <Magnetic>
             <button
               type="button"

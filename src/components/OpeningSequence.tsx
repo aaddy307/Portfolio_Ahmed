@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { profile } from '../data/portfolio';
-import { useReducedMotionPref } from '../hooks/useMedia';
+import { useFinePointer, useReducedMotionPref } from '../hooks/useMedia';
 import { EASE, Magnetic } from './fx';
 
 /**
@@ -19,6 +19,7 @@ const TIMELINE = [
 
 export default function OpeningSequence({ onDone }: { onDone: () => void }) {
   const reduced = useReducedMotionPref();
+  const fine = useFinePointer();
   const [beat, setBeat] = useState(reduced ? 6 : 0);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function OpeningSequence({ onDone }: { onDone: () => void }) {
   return (
     <motion.div
       className="fixed inset-0 z-[120] overflow-hidden bg-black"
-      exit={{ opacity: 0, scale: 1.04, filter: 'blur(12px)' }}
+      exit={{ opacity: 0, scale: 1.04, ...(fine && { filter: 'blur(12px)' }) }}
       transition={{ duration: 0.9, ease: EASE }}
       role="dialog"
       aria-label="Opening titles"
@@ -65,7 +66,7 @@ export default function OpeningSequence({ onDone }: { onDone: () => void }) {
             className="absolute inset-0 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, filter: 'blur(6px)' }}
+            exit={{ opacity: 0, ...(fine && { filter: 'blur(6px)' }) }}
             transition={{ duration: 0.6 }}
           >
             <motion.p
@@ -83,8 +84,8 @@ export default function OpeningSequence({ onDone }: { onDone: () => void }) {
       {/* portrait */}
       <motion.div
         className="absolute inset-x-0 bottom-0 z-0 mx-auto flex h-[68vh] max-w-[900px] items-end justify-center"
-        initial={{ opacity: 0, scale: 1.12, filter: 'blur(18px) brightness(0.3)' }}
-        animate={beat >= 4 ? { opacity: 1, scale: 1, filter: 'blur(0px) brightness(1)' } : {}}
+        initial={{ opacity: 0, scale: 1.12, ...(fine && { filter: 'blur(18px) brightness(0.3)' }) }}
+        animate={beat >= 4 ? { opacity: 1, scale: 1, ...(fine && { filter: 'blur(0px) brightness(1)' }) } : {}}
         transition={{ duration: 1.6, ease: EASE }}
       >
         <img
@@ -103,8 +104,8 @@ export default function OpeningSequence({ onDone }: { onDone: () => void }) {
         <motion.h1
           className="font-display leading-[0.82] text-bone drop-shadow-[0_8px_40px_rgba(0,0,0,0.8)]"
           style={{ fontSize: 'clamp(4.6rem, 20vw, 15rem)' }}
-          initial={{ opacity: 0, scale: 1.3, filter: 'blur(20px)', letterSpacing: '0.5em' }}
-          animate={beat >= 2 ? { opacity: 1, scale: 1, filter: 'blur(0px)', letterSpacing: '0.04em', y: beat >= 4 ? '-30vh' : 0 } : {}}
+          initial={{ opacity: 0, scale: 1.3, ...(fine && { filter: 'blur(20px)' }), letterSpacing: '0.5em' }}
+          animate={beat >= 2 ? { opacity: 1, scale: 1, ...(fine && { filter: 'blur(0px)' }), letterSpacing: '0.04em', y: beat >= 4 ? '-30vh' : 0 } : {}}
           transition={{ duration: 1.3, ease: EASE }}
         >
           {profile.firstName}
@@ -147,7 +148,7 @@ export default function OpeningSequence({ onDone }: { onDone: () => void }) {
       <button
         type="button"
         onClick={onDone}
-        className="absolute right-4 top-[calc(7vh+12px)] z-40 rounded-full border border-white/20 px-4 py-2 font-sans text-[11px] font-semibold tracking-[0.2em] text-mist transition hover:border-white/60 hover:text-bone"
+        className="hidden sm:block absolute right-4 top-[calc(7vh+12px)] z-40 rounded-full border border-white/20 px-4 py-2 font-sans text-[11px] font-semibold tracking-[0.2em] text-mist transition hover:border-white/60 hover:text-bone"
       >
         SKIP INTRO
       </button>

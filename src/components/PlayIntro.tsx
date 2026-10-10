@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useMotionValue } from 'framer-motion';
 import { introSlides, profile } from '../data/portfolio';
 import { useScrollLock } from '../hooks/smoothScroll';
-import { useReducedMotionPref } from '../hooks/useMedia';
+import { useFinePointer, useReducedMotionPref } from '../hooks/useMedia';
 import { EASE } from './fx';
 
 const SLIDE_MS = 3600;
@@ -14,6 +14,7 @@ const SLIDE_MS = 3600;
 export default function PlayIntro({ onClose }: { onClose: () => void }) {
   useScrollLock(true);
   const reduced = useReducedMotionPref();
+  const fine = useFinePointer();
   const [phase, setPhase] = useState<'zoom' | 'reel' | 'end'>(reduced ? 'reel' : 'zoom');
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -86,7 +87,7 @@ export default function PlayIntro({ onClose }: { onClose: () => void }) {
       className="fixed inset-0 z-[130] overflow-hidden bg-black"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, filter: 'blur(10px)' }}
+      exit={{ opacity: 0, ...(fine && { filter: 'blur(10px)' }) }}
       transition={{ duration: 0.6 }}
       role="dialog"
       aria-modal="true"
@@ -96,7 +97,7 @@ export default function PlayIntro({ onClose }: { onClose: () => void }) {
       <motion.div
         className="absolute inset-0 flex items-end justify-center"
         initial={{ scale: 1, opacity: 1 }}
-        animate={phase === 'zoom' ? { scale: [1, 1.08, 2.6], opacity: [0.9, 1, 0] } : { opacity: 0.1, scale: 1.25, filter: 'blur(4px)' }}
+        animate={phase === 'zoom' ? { scale: [1, 1.08, 2.6], opacity: [0.9, 1, 0] } : { opacity: 0.1, scale: 1.25, ...(fine && { filter: 'blur(4px)' }) }}
         transition={{ duration: phase === 'zoom' ? 1.7 : 1.2, ease: [0.7, 0, 0.2, 1], times: phase === 'zoom' ? [0, 0.3, 1] : undefined }}
         style={{ transformOrigin: '50% 30%' }}
       >
@@ -131,9 +132,9 @@ export default function PlayIntro({ onClose }: { onClose: () => void }) {
             <motion.div
               key={index}
               className="max-w-4xl"
-              initial={{ opacity: 0, scale: 1.06, filter: 'blur(14px)' }}
-              animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, scale: 0.96, filter: 'blur(10px)' }}
+              initial={{ opacity: 0, scale: 1.06, ...(fine && { filter: 'blur(14px)' }) }}
+              animate={{ opacity: 1, scale: 1, ...(fine && { filter: 'blur(0px)' }) }}
+              exit={{ opacity: 0, scale: 0.96, ...(fine && { filter: 'blur(10px)' }) }}
               transition={{ duration: 0.7, ease: EASE }}
             >
               <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.5em] text-crimson-2 sm:text-xs">

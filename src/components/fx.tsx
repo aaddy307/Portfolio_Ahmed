@@ -77,6 +77,7 @@ export function Tilt({
 export function RevealText({ text, className = '', delay = 0, as = 'span' }: { text: string; className?: string; delay?: number; as?: 'span' | 'h2' | 'h3' | 'p' }) {
   const Tag = motion[as];
   const words = text.split(' ');
+  const fine = useFinePointer();
   return (
     <Tag
       className={className}
@@ -91,12 +92,12 @@ export function RevealText({ text, className = '', delay = 0, as = 'span' }: { t
           <motion.span
             className="inline-block"
             variants={{
-              hidden: { y: '105%', opacity: 0, filter: 'blur(8px)' },
-              show: { y: '0%', opacity: 1, filter: 'blur(0px)', transition: { duration: 0.9, ease: EASE } },
+              hidden: { y: '105%', opacity: 0, ...(fine && { filter: 'blur(8px)' }) },
+              show: { y: '0%', opacity: 1, ...(fine && { filter: 'blur(0px)' }), transition: { duration: 0.9, ease: EASE } },
             }}
           >
             {w}
-            {i < words.length - 1 ? ' ' : ''}
+            {i < words.length - 1 ? ' ' : ''}
           </motion.span>
         </span>
       ))}
@@ -126,14 +127,17 @@ export function SectionHeading({ kicker, title, aside }: { kicker: string; title
   );
 }
 
-/** Lightweight drifting dust particles on a canvas — pauses when off screen. */
+/** Lightweight drifting dust particles on a canvas — pauses when off screen. Desktop only for perf. */
 export function Particles({ count = 46, color = '255,90,110', className = '' }: { count?: number; color?: string; className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
   const reduced = useReducedMotionPref();
+  const fine = useFinePointer();
+  // Skip particles entirely on touch devices — canvas rAF loops are expensive on mobile GPUs
+  const disabled = reduced || !fine;
 
   useEffect(() => {
     const canvas = ref.current;
-    if (!canvas || reduced) return;
+    if (!canvas || disabled) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -201,7 +205,7 @@ export function Particles({ count = 46, color = '255,90,110', className = '' }: 
       ro.disconnect();
       cancelAnimationFrame(raf);
     };
-  }, [count, color, reduced]);
+  }, [count, color, disabled]);
 
   return <canvas ref={ref} aria-hidden className={`pointer-events-none absolute inset-0 h-full w-full ${className}`} />;
 }

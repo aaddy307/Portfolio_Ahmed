@@ -18,6 +18,7 @@ import Achievements from './components/Achievements';
 import ResumeSection from './components/ResumeViewer';
 import FinalCTA from './components/FinalCTA';
 import { EASE } from './components/fx';
+import { useFinePointer } from './hooks/useMedia';
 
 // Overlays are only needed on demand — split them out of the first load.
 const PlayIntro = lazy(() => import('./components/PlayIntro'));
@@ -54,6 +55,7 @@ function Series() {
   const [resumeOpen, setResumeOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const { scrollTo, lock, unlock } = useSmoothScroll();
+  const fine = useFinePointer();
 
   const order = viewerProfiles.find((p) => p.id === profileId)!.order;
 
@@ -114,7 +116,7 @@ function Series() {
       </AnimatePresence>
 
       {stage === 'home' && (
-        <motion.div initial={{ opacity: 0, scale: 1.03, filter: 'blur(10px)' }} animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }} transition={{ duration: 1, ease: EASE }}>
+        <motion.div initial={{ opacity: 0, scale: 1.03, ...(fine && { filter: 'blur(10px)' }) }} animate={{ opacity: 1, scale: 1, ...(fine && { filter: 'blur(0px)' }) }} transition={{ duration: 1, ease: EASE }}>
           <Navbar order={order} profileId={profileId} onSwitch={pickProfile} />
           <main>
             <Hero key={`hero-${profileId}`} onPlay={() => setPlaying(true)} onResume={() => setResumeOpen(true)} profileId={profileId} />

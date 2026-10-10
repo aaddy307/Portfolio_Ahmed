@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { skillCategories, skillEvidence, type Skill } from '../data/portfolio';
 import { EASE, SectionHeading } from './fx';
+import { useFinePointer } from '../hooks/useMedia';
 import { TechLogo } from './TechLogos';
 
 const HUES = ['#ff3d5a', '#4cc9ff', '#46e3a8', '#ffb547', '#b98bff', '#ff8a5c', '#7ee0ff'];
@@ -10,6 +11,7 @@ export default function Skills() {
   const [cat, setCat] = useState(0);
   const category = skillCategories[cat];
   const hue = HUES[cat % HUES.length];
+  const fine = useFinePointer();
 
   return (
     <>
@@ -49,7 +51,7 @@ export default function Skills() {
               </motion.p>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">
                 {category.skills.map((s) => (
-                  <SkillCard key={s.name} skill={s} hue={hue} />
+                  <SkillCard key={s.name} skill={s} hue={hue} fine={fine} />
                 ))}
               </div>
             </motion.div>
@@ -60,7 +62,7 @@ export default function Skills() {
   );
 }
 
-function SkillCard({ skill, hue }: { skill: Skill; hue: string }) {
+function SkillCard({ skill, hue, fine }: { skill: Skill; hue: string; fine: boolean }) {
   const [open, setOpen] = useState(false);
   const evidence = skillEvidence[skill.name];
 
@@ -72,8 +74,8 @@ function SkillCard({ skill, hue }: { skill: Skill; hue: string }) {
       onClick={() => setOpen((o) => !o)}
       aria-expanded={open}
       variants={{
-        hidden: { opacity: 0, y: 24, scale: 0.94, filter: 'blur(6px)' },
-        show: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', transition: { duration: 0.55, ease: EASE } },
+        hidden: { opacity: 0, y: 24, scale: 0.94, ...(fine && { filter: 'blur(6px)' }) },
+        show: { opacity: 1, y: 0, scale: 1, ...(fine && { filter: 'blur(0px)' }), transition: { duration: 0.55, ease: EASE } },
         exit: { opacity: 0, y: -12, transition: { duration: 0.2 } },
       }}
       whileHover={{ y: -6 }}

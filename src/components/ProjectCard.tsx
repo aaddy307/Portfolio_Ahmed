@@ -1,14 +1,16 @@
 import { motion } from 'framer-motion';
 import type { Project } from '../data/portfolio';
+import { useFinePointer } from '../hooks/useMedia';
 import { EASE, Tilt } from './fx';
 import { ProjectArt } from './Poster';
 
 export default function ProjectCard({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
+  const fine = useFinePointer();
   return (
     <motion.article
       className="w-[84vw] shrink-0 snap-start sm:w-[62vw] lg:w-[46vw] xl:w-[42vw]"
-      initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 40, ...(fine && { filter: 'blur(10px)' }) }}
+      whileInView={{ opacity: 1, y: 0, ...(fine && { filter: 'blur(0px)' }) }}
       viewport={{ once: true, margin: '0px -10% 0px 0px' }}
       transition={{ duration: 0.9, delay: index * 0.08, ease: EASE }}
     >
@@ -54,6 +56,18 @@ export default function ProjectCard({ project, index, onOpen }: { project: Proje
             </div>
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <span className="flex min-h-11 items-center gap-2 rounded-md bg-bone px-5 text-sm font-bold text-ink transition group-hover:bg-white">▶ View Project</span>
+              {(project.liveUrl || project.live) && (
+                <a
+                  href={project.liveUrl || project.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cursor="link"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex min-h-11 items-center gap-2 rounded-md border border-white/25 bg-black/40 px-4 text-sm font-semibold text-bone backdrop-blur transition hover:border-crimson hover:text-crimson-2"
+                >
+                  Live ↗
+                </a>
+              )}
               {project.github && (
                 <a
                   href={project.github}
