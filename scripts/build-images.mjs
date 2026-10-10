@@ -1,6 +1,6 @@
-// Builds optimized portrait assets from public/IMG_4674.JPG
+// Builds optimized portrait assets and project hero banners
 import sharp from 'sharp';
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, existsSync } from 'node:fs';
 
 const OUT = 'public/assets';
 mkdirSync(OUT, { recursive: true });
@@ -50,5 +50,34 @@ await sharp({
   ])
   .jpeg({ quality: 85 })
   .toFile(`${OUT}/og-image.jpg`);
+
+// Generate optimized WebP versions of project hero banners
+const projectImages = [
+  'AmarJeans.png',
+  'FluidValve.png',
+  'FXsurya.png',
+  'GetCredit.png',
+  'KhanBuilders.png',
+  'MediAi.png',
+  'Portfolio.png',
+  'RehanNX.png',
+  'Umaya.png',
+];
+
+const PROJECTS_OUT = 'public/assets/projects';
+mkdirSync(PROJECTS_OUT, { recursive: true });
+
+console.log('Generating optimized WebP project banners...');
+for (const file of projectImages) {
+  const fullPath = `public/${file}`;
+  if (existsSync(fullPath)) {
+    const base = file.replace(/\.png$/i, '');
+    await sharp(fullPath)
+      .resize({ width: 1200, withoutEnlargement: true })
+      .webp({ quality: 84 })
+      .toFile(`${PROJECTS_OUT}/${base}.webp`);
+    console.log(`Created ${PROJECTS_OUT}/${base}.webp`);
+  }
+}
 
 console.log('Images built successfully.');

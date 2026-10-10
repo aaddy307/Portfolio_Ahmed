@@ -57,7 +57,12 @@ export default function ProjectModal({ project, onClose, onSwitch }: { project: 
             <motion.div layoutId={`art-${project.id}`} className="absolute inset-0" transition={{ duration: 0.7, ease: EASE }}>
               <ProjectArt project={project} />
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-ink-2 via-ink-2/30 to-transparent" />
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2"
+              style={{
+                background: 'linear-gradient(to top, #141414 0%, rgba(20, 20, 20, 0.95) 28%, rgba(20, 20, 20, 0.45) 68%, transparent 100%)',
+              }}
+            />
             <button
               ref={closeBtn}
               type="button"
@@ -69,13 +74,13 @@ export default function ProjectModal({ project, onClose, onSwitch }: { project: 
               ✕
             </button>
             <div className="absolute inset-x-0 bottom-0 px-5 pb-6 sm:px-10">
-              <motion.p className="mb-2 flex items-center gap-2 text-[11px] font-bold tracking-[0.34em] text-bone/80" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+              <motion.p className="mb-2 flex items-center gap-2 text-[11px] font-bold tracking-[0.34em] text-bone drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
                 <span className="font-display text-xl tracking-normal text-crimson-2">S</span> ORIGINAL
               </motion.p>
               <motion.h2
                 id={`title-${project.id}-modal`}
                 layoutId={`title-${project.id}`}
-                className="font-display text-[clamp(2.8rem,8vw,6rem)] leading-[0.86] tracking-wide text-bone"
+                className="font-display text-[clamp(2.8rem,8vw,6rem)] leading-[0.86] tracking-wide text-bone drop-shadow-[0_4px_24px_rgba(0,0,0,1)]"
                 transition={{ duration: 0.7, ease: EASE }}
               >
                 {project.title}

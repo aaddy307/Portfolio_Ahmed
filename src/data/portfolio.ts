@@ -77,6 +77,7 @@ export type Project = {
   /** Optional live site. Shown as a "Live site" button in the project overlay. */
   live?: string;
   liveUrl?: string;
+  image?: string;
   palette: Palette;
   motif: 'shield' | 'flow' | 'tenants';
 };
@@ -105,6 +106,7 @@ export const projects: Project[] = [
     ],
     live: 'https://mediaiofficial.in/',
     liveUrl: 'https://mediaiofficial.in/',
+    image: '/assets/projects/MediAi.webp',
     palette: { from: '#2a0610', via: '#7a0f24', to: '#0b0710', accent: '#ff3d5a' },
     motif: 'shield',
   },
@@ -133,6 +135,7 @@ export const projects: Project[] = [
     ],
     live: 'https://fluidvalve.shop/',
     liveUrl: 'https://fluidvalve.shop/',
+    image: '/assets/projects/FluidValve.webp',
     palette: { from: '#1a0d02', via: '#8a4a07', to: '#0a0806', accent: '#ffb547' },
     motif: 'flow',
   },
@@ -181,6 +184,7 @@ export const projects: Project[] = [
     ],
     live: 'https://rehannxmobiles.shop/',
     liveUrl: 'https://rehannxmobiles.shop/',
+    image: '/assets/projects/RehanNX.webp',
     palette: { from: '#05161c', via: '#0b4d5e', to: '#040d12', accent: '#3ee0f5' },
     motif: 'shield',
   },
@@ -206,6 +210,7 @@ export const projects: Project[] = [
     ],
     live: 'https://get-credit.in/',
     liveUrl: 'https://get-credit.in/',
+    image: '/assets/projects/GetCredit.webp',
     palette: { from: '#031810', via: '#0e5c3c', to: '#040d09', accent: '#44f2a7' },
     motif: 'shield',
   },
@@ -231,6 +236,7 @@ export const projects: Project[] = [
     ],
     live: 'https://umaya.shop/',
     liveUrl: 'https://umaya.shop/',
+    image: '/assets/projects/Umaya.webp',
     palette: { from: '#1a0628', via: '#631885', to: '#0a0410', accent: '#d279ff' },
     motif: 'flow',
   },
@@ -277,6 +283,7 @@ export const projects: Project[] = [
       { value: 'D2C', label: 'e-commerce' },
       { value: '3', label: 'core technologies' },
     ],
+    image: '/assets/projects/AmarJeans.webp',
     palette: { from: '#04121f', via: '#0f4c6e', to: '#05080d', accent: '#4cc9ff' },
     motif: 'tenants',
   },
@@ -302,6 +309,7 @@ export const projects: Project[] = [
     ],
     live: 'https://khan-builders-and-developers.online/',
     liveUrl: 'https://khan-builders-and-developers.online/',
+    image: '/assets/projects/KhanBuilders.webp',
     palette: { from: '#1c1204', via: '#754b0c', to: '#0b0803', accent: '#f5b842' },
     motif: 'shield',
   },
@@ -352,6 +360,7 @@ export const projects: Project[] = [
     ],
     live: 'https://fxsuryapandit.com/',
     liveUrl: 'https://fxsuryapandit.com/',
+    image: '/assets/projects/FXsurya.webp',
     palette: { from: '#1a0410', via: '#630f3f', to: '#0c0308', accent: '#f5429e' },
     motif: 'shield',
   },
@@ -378,6 +387,7 @@ export const projects: Project[] = [
     github: 'https://github.com/aaddy307',
     live: 'https://aaddy.xyz/',
     liveUrl: 'https://aaddy.xyz/',
+    image: '/assets/projects/Portfolio.webp',
     palette: { from: '#24060b', via: '#6e0d1d', to: '#09070a', accent: '#ff3d5a' },
     motif: 'shield',
   },
