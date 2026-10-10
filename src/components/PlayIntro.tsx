@@ -46,8 +46,9 @@ export default function PlayIntro({ onClose }: { onClose: () => void }) {
     if (phase !== 'reel' || paused) return;
     let raf = 0;
     let last = performance.now();
+    const duration = introSlides[index]?.lines.length > 4 ? 6500 : SLIDE_MS;
     const tick = (now: number) => {
-      const v = progress.get() + (now - last) / SLIDE_MS;
+      const v = progress.get() + (now - last) / duration;
       last = now;
       if (v >= 1) {
         next();
@@ -140,17 +141,30 @@ export default function PlayIntro({ onClose }: { onClose: () => void }) {
               <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.5em] text-crimson-2 sm:text-xs">
                 Episode {String(index + 1).padStart(2, '0')} · {slide.kicker}
               </p>
-              <h2 className="font-display leading-[0.88] text-bone" style={{ fontSize: 'clamp(3rem, 10vw, 8.5rem)' }}>
+              <h2
+                className="font-display leading-[0.88] text-bone"
+                style={{ fontSize: slide.lines.length > 6 ? 'clamp(2.75rem, 7vw, 6rem)' : 'clamp(3rem, 10vw, 8.5rem)' }}
+              >
                 {slide.title}
               </h2>
-              <div className="mt-6 space-y-2">
+              <div
+                className={`mt-6 ${
+                  slide.lines.length > 6
+                    ? 'space-y-1 sm:space-y-1.5 max-h-[60vh] overflow-y-auto px-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden'
+                    : 'space-y-2'
+                }`}
+              >
                 {slide.lines.map((l, i) => (
                   <motion.p
                     key={l}
-                    className="text-base text-bone/80 sm:text-xl"
+                    className={slide.lines.length > 6 ? 'text-sm text-bone/80 sm:text-base md:text-lg' : 'text-base text-bone/80 sm:text-xl'}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.35 + i * 0.15, duration: 0.6, ease: EASE }}
+                    transition={{
+                      delay: slide.lines.length > 6 ? 0.12 + i * 0.04 : 0.35 + i * 0.15,
+                      duration: 0.5,
+                      ease: EASE,
+                    }}
                   >
                     {l}
                   </motion.p>

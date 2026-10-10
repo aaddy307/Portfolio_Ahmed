@@ -68,6 +68,7 @@ export type Project = {
   year: string;
   genre: string;
   logline: string;
+  reelSummary?: string;
   stack: string[];
   build: string[];
   features: string[];
@@ -89,6 +90,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'Healthcare • AI • Full-Stack',
     logline: 'A co-founded healthcare platform with four role-based panels: User, Doctor, Admin and Super Admin.',
+    reelSummary: 'Four role-based panels',
     stack: ['React', 'Node.js', 'Socket.io', 'WebRTC', 'Groq AI'],
     build: [
       'Co-founded and built a healthcare platform with four role-based panels (User, Doctor, Admin, Super Admin), deployed live at mediaiofficial.in.',
@@ -116,6 +118,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'B2B • Industrial • Product Catalog',
     logline: 'B2B product catalog with Google OAuth, customer-specific pricing, product browsing, cart functionality, and quote requests instead of direct online payments.',
+    reelSummary: 'B2B industrial catalog',
     stack: ['Next.js 14', 'Express', 'JavaScript', 'Google OAuth', 'MongoDB'],
     build: [
       'Built a B2B industrial valve catalog and inquiry site with Next.js 14 and an Express backend, in pure JavaScript.',
@@ -145,6 +148,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'E-commerce • Mobile Accessories • Retail',
     logline: 'E-commerce platform for mobile accessories with catalog browsing and online ordering.',
+    reelSummary: 'Mobile accessories retail',
     stack: ['React', 'Node.js', 'Express', 'MongoDB'],
     build: [
       'Developed an e-commerce platform dedicated to mobile accessories retail and wholesale distribution.',
@@ -168,6 +172,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'E-commerce • Mobile Shop • Retail',
     logline: 'Mobile shop web platform showcasing smartphones, accessories, and store inventory.',
+    reelSummary: 'Mobile shop storefront',
     stack: ['React', 'Next.js', 'Node.js', 'MongoDB'],
     build: [
       'Engineered a dedicated web presence and digital storefront for Rehan NX mobile shop.',
@@ -194,6 +199,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'FinTech • Lead Management • Dashboard',
     logline: 'Loan website featuring automated lead management and a comprehensive administrative dashboard.',
+    reelSummary: 'FinTech loan platform',
     stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
     build: [
       'Built a financial services website with loan application forms and lead capture pipelines.',
@@ -220,6 +226,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'E-commerce • Crystals & Healing • D2C',
     logline: 'Crystal business website and online storefront showcasing healing stones, jewelry, and spiritual products.',
+    reelSummary: 'D2C crystal storefront',
     stack: ['Next.js', 'React', 'Node.js', 'MongoDB'],
     build: [
       'Designed and deployed an e-commerce storefront for Umaya Crystals spiritual and gemstone business.',
@@ -246,6 +253,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'Manufacturing • Web & Mobile • B2B',
     logline: 'Website and mobile application for leather products, buckles, and footbeds.',
+    reelSummary: 'Manufacturing web & app',
     stack: ['React Native', 'React', 'Node.js', 'Express', 'MongoDB'],
     build: [
       'Engineered both a responsive web application and cross-platform mobile app for Bregid Factory.',
@@ -269,6 +277,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'E-commerce • D2C • MERN',
     logline: 'A direct-to-consumer denim business storefront built on Next.js, Express and MongoDB.',
+    reelSummary: 'D2C denim storefront',
     stack: ['Next.js', 'Express', 'MongoDB'],
     build: [
       'Built a D2C denim e-commerce storefront with Next.js, Express and MongoDB.',
@@ -293,6 +302,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'Real Estate • Construction • Corporate',
     logline: 'Construction business website showcasing architectural projects, services, and consultations.',
+    reelSummary: 'Real estate & construction',
     stack: ['React', 'Next.js', 'Node.js', 'Tailwind CSS'],
     build: [
       'Built a professional digital presence for Khan Builders & Developers construction enterprise.',
@@ -319,6 +329,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'Corporate • Client Business • Web',
     logline: 'Corporate business website and client portal developed for commercial enterprise services.',
+    reelSummary: 'Corporate client portal',
     stack: ['React', 'Node.js', 'Express', 'MongoDB'],
     build: [
       'Developed a modern enterprise business website for AK Enterprises corporate services.',
@@ -344,6 +355,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'Services • Client Portal • Web',
     logline: 'Official client website presenting services, consultations, and professional client portal.',
+    reelSummary: 'Client consultation portal',
     stack: ['React', 'Next.js', 'Node.js', 'Tailwind CSS'],
     build: [
       'Developed and deployed the official client website for FX Surya Pandit.',
@@ -370,6 +382,7 @@ export const projects: Project[] = [
     year: '2026',
     genre: 'Portfolio • Cinematic • React',
     logline: 'Personal developer portfolio featuring a Netflix-inspired cinematic series experience.',
+    reelSummary: 'Cinematic developer series',
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
     build: [
       'Designed and engineered a cinematic developer portfolio with custom typography, sound, and interactive features.',
@@ -715,8 +728,21 @@ export const introSlides: IntroSlide[] = [
   },
   {
     kicker: 'Projects',
-    title: 'Three Originals',
-    lines: ['MediAI — four role-based panels, live', 'Fluid Valve — B2B industrial catalog', 'Amar Jeans — D2C denim storefront'],
+    title: 'Twelve Originals',
+    lines: [
+      'MediAI — four role-based panels, live',
+      'Fluid Valve — B2B industrial catalog, live',
+      'Amar Jeans — D2C denim storefront',
+      'Get Credit — FinTech loan platform, live',
+      'Umaya Crystals — D2C crystal storefront, live',
+      'Rehan NX — mobile shop storefront, live',
+      'Khan Builders — real estate & construction, live',
+      'FX Surya — client consultation portal, live',
+      'AK Enterprises — corporate client portal, live',
+      'Bregid Factory — manufacturing web & mobile app',
+      'Shree Ganesh Enterprises — mobile accessories retail',
+      "Ahmed's Portfolio — cinematic developer series, live",
+    ],
   },
   {
     kicker: 'Delivered',

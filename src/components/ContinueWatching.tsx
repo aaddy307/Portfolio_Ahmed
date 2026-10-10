@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { sectionMeta, type SectionId } from '../data/portfolio';
+import { projects, sectionMeta, type SectionId } from '../data/portfolio';
 import { useWatchProgress } from '../hooks/sectionProgress';
 import { useSmoothScroll } from '../hooks/smoothScroll';
 import { useFinePointer } from '../hooks/useMedia';
@@ -8,7 +8,7 @@ import { EASE, RevealText } from './fx';
 import { PosterBackdrop } from './Poster';
 import { RailButtons } from './Rail';
 
-const GLYPHS: Record<SectionId, string> = { about: 'S', journey: 'S01', originals: '3', picks: '10', skills: '{ }', moments: '★', story: 'CV' };
+const GLYPHS: Record<SectionId, string> = { about: 'S', journey: 'S01', originals: String(projects.length), picks: '10', skills: '{ }', moments: '★', story: 'CV' };
 
 export default function ContinueWatching({ order }: { order: SectionId[] }) {
   const progress = useWatchProgress();
