@@ -9,12 +9,18 @@ import { useTrackProgress } from '../hooks/sectionProgress';
 export default function Scene({ id, children, className = '' }: { id: string; children: ReactNode; className?: string }) {
   const ref = useRef<HTMLElement>(null);
   useTrackProgress(id, ref);
+  const isOriginals = id === 'originals';
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'start 0.55'] });
   const opacity = useTransform(scrollYProgress, [0, 1], [0.15, 1]);
   const scale = useTransform(scrollYProgress, [0, 1], [0.97, 1]);
 
   return (
-    <motion.section id={id} ref={ref} style={{ opacity, scale }} className={`relative scroll-mt-16 py-16 sm:py-24 w-full max-w-full overflow-x-clip ${className}`}>
+    <motion.section
+      id={id}
+      ref={ref}
+      style={{ opacity, ...(isOriginals ? {} : { scale }) }}
+      className={`relative scroll-mt-16 ${isOriginals ? '' : 'py-16 sm:py-24 overflow-x-clip'} w-full max-w-full ${className}`}
+    >
       {children}
     </motion.section>
   );

@@ -8,7 +8,7 @@ export default function ProjectCard({ project, index, onOpen }: { project: Proje
   const fine = useFinePointer();
   return (
     <motion.article
-      className="w-[88vw] shrink-0 snap-start sm:w-[72vw] md:w-[60vw] lg:w-[48vw] xl:w-[44vw]"
+      className="w-[88vw] max-w-[700px] shrink-0 snap-start sm:w-[72vw] md:w-[60vw] lg:w-[44vw] xl:w-[38vw]"
       initial={{ opacity: 0, y: 40, ...(fine && { filter: 'blur(10px)' }) }}
       whileInView={{ opacity: 1, y: 0, ...(fine && { filter: 'blur(0px)' }) }}
       viewport={{ once: true, margin: '0px -10% 0px 0px' }}
